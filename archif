@@ -1,0 +1,41 @@
+<?php 
+    include_once './config/database.php';
+    
+    $database = new Database();
+    $connection = $database->connect();
+    $arr = array();
+    $item1 = array('one'=> 1, 'two' => 2, 'three'=> 3);
+    array_push($arr, $item1);
+    $item2 = array('one'=> 1, 'two' => 2, 'three'=> 3);
+    array_push($arr, $item2);
+    $item3 = array('one'=> 1, 'two' => 2, 'three'=> 3);
+    array_push($arr, $item3);
+    
+    $sql = $connection->prepare("select * from users");
+    $sql->execute();
+    $result = $sql->setFetchMode(PDO::FETCH_ASSOC);
+    echo json_encode($arr);
+    $connection = null;
+?>
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>api</title>
+</head>
+<body>
+    <section>
+        <?php foreach($sql->fetchAll() as $kk=>$vv): ?>
+            <div>
+            <?php foreach($vv as $k=>$v): ?>
+                <p>
+                    <b><?php echo $k ?> :</b>
+                    <span><?php echo $v ?></span>
+                </p>
+            <?php  endforeach; ?>
+            </div>
+            <hr />
+        <?php  endforeach; ?>
+    </section>
+</body>
+</html>-->
