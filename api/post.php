@@ -8,7 +8,7 @@
     $db = new Database();
     $connection = $db->connect();
 
-    $post = new Post($db);
+    $post = new Post($connection);
 
     $post->id = isset($_GET['id']) ? $_GET['id'] : die();
     $result = $post->readOne();
@@ -20,7 +20,6 @@
             'id' => $row['id'],
             'title' => $row['title'],
             'body' => html_entity_decode($row['body']),
-            'author' => $row['author'],
             'created_at' => $row['created_at'],
             'author' => $row['username'],
             'category_name' => $row['category_name']

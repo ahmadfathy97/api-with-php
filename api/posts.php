@@ -8,7 +8,7 @@
     $db = new Database();
     $connection = $db->connect();
 
-    $post = new Post($db);
+    $post = new Post($connection);
     
     $result = $post->readAll();
     /*print_r($result->fetch(PDO::FETCH_ASSOC));*/
@@ -22,7 +22,6 @@
                 'id' => $id,
                 'title' => $title,
                 'body' => html_entity_decode($body),
-                'author' => $author,
                 'created_at' => $created_at,
                 'author' => $username,
                 'category_name' => $category_name
